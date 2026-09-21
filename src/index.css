@@ -1,18 +1,38 @@
 @import "tailwindcss";
 
 @theme {
-  --color-cream: #FDF8F1;
-  --color-cream-2: #F5EBDD;
-  --color-sage: #5B7A5F;
-  --color-sage-light: #7A9E7E;
-  --color-sage-dark: #425B45;
-  --color-moss: #2E3B2F;
-  --color-ink: #1A1E1D;
-  --color-stone: #8A8682;
-  --color-warm: #E8B86A;
-  --color-blush: #E9D5C8;
+  --color-paper: #FFF7F3;
+  --color-cream: #FFF7F3;
+  --color-cream-2: #F0DFDA;
+  --color-sage: #FF4F87;
+  --color-sage-light: #A894FF;
+  --color-sage-dark: #17152B;
+  --color-moss: #25D9D1;
+  --color-ink: #17152B;
+  --color-stone: #68677C;
+  --color-warm: #D9FF5F;
+  --color-blush: #F0DFDA;
+  --color-muted: #68677C;
+  --color-coral: #FF4F87;
+  --color-lime: #D9FF5F;
+  --color-line: #F0DFDA;
+  --color-cyan: #25D9D1;
+  --color-purple: #A894FF;
+  --color-white: #FFFFFF;
   --font-display: "Fraunces", serif;
   --font-body: "DM Sans", system-ui, sans-serif;
+}
+
+:root {
+  --background: var(--color-paper);
+  --foreground: var(--color-ink);
+  --muted: var(--color-muted);
+  --accent: var(--color-coral);
+  --accent-alt: var(--color-lime);
+  --accent-soft: var(--color-cyan);
+  --border: var(--color-line);
+  --card: var(--color-white);
+  --card-soft: #F8F3F0;
 }
 
 * { font-variant-ligatures: common-ligatures; }
@@ -24,8 +44,8 @@ html {
 
 body {
   font-family: var(--font-body);
-  background: var(--color-cream);
-  color: var(--color-ink);
+  background: var(--background);
+  color: var(--foreground);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   overscroll-behavior-y: none;
@@ -35,8 +55,8 @@ body {
 
 @media (prefers-color-scheme: dark) {
   body {
-    background: #121412;
-    color: #F5F1EB;
+    background: var(--color-ink);
+    color: var(--color-paper);
   }
 }
 
