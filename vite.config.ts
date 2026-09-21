@@ -19,8 +19,8 @@ export default defineConfig({
         display: 'standalone',
         display_override: ['window-controls-overlay', 'standalone', 'browser'],
         orientation: 'portrait',
-        background_color: '#FDF8F1',
-        theme_color: '#5B7A5F',
+        background_color: '#FFF7F3',
+        theme_color: '#FF4F87',
         categories: ['productivity', 'lifestyle', 'health'],
         lang: 'en',
         icons: [

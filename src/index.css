@@ -5,7 +5,7 @@
   --color-cream: #FFF7F3;
   --color-cream-2: #F0DFDA;
   --color-sage: #FF4F87;
-  --color-sage-light: #A894FF;
+  --color-sage-light: #FF9FBD;
   --color-sage-dark: #17152B;
   --color-moss: #25D9D1;
   --color-ink: #17152B;
@@ -15,7 +15,7 @@
   --color-muted: #68677C;
   --color-coral: #FF4F87;
   --color-lime: #D9FF5F;
-  --color-line: #F0DFDA;
+  --color-line: #E7DDE0;
   --color-cyan: #25D9D1;
   --color-purple: #A894FF;
   --color-white: #FFFFFF;
@@ -32,7 +32,7 @@
   --accent-soft: var(--color-cyan);
   --border: var(--color-line);
   --card: var(--color-white);
-  --card-soft: #F8F3F0;
+  --card-soft: #FFFDFC;
 }
 
 * { font-variant-ligatures: common-ligatures; }

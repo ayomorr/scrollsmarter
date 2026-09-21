@@ -69,7 +69,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       }
       // update theme-color
       const meta = document.querySelector('meta[name="theme-color"]')
-      if (meta) meta.setAttribute('content', root.classList.contains('dark') ? '#1A1E1D' : '#5B7A5F')
+      if (meta) meta.setAttribute('content', root.classList.contains('dark') ? '#17152B' : '#FF4F87')
     }
     apply(settings.appearance)
     const mq = window.matchMedia('(prefers-color-scheme: dark)')

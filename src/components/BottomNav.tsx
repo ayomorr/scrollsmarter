@@ -9,10 +9,10 @@ const items = [
 
 export function BottomNav() {
   return (
-    <nav className="fixed bottom-0 inset-x-0 z-40 bg-white/90 dark:bg-[#1E2320]/90 backdrop-blur-xl border-t border-black/5 dark:border-white/10 pb-[env(safe-area-inset-bottom)]">
+    <nav className="fixed bottom-0 inset-x-0 z-40 bg-white/90 dark:bg-[#26213B]/90 backdrop-blur-xl border-t border-black/5 dark:border-white/10 pb-[env(safe-area-inset-bottom)]">
       <div className="max-w-[480px] mx-auto flex">
         {items.map(it => (
-          <NavLink key={it.to} to={it.to} className={({isActive}) => `flex-1 flex flex-col items-center gap-1 py-3 text-[11px] tracking-wide font-medium transition-colors ${isActive ? 'text-[#5B7A5F] dark:text-[#A8C4A8]' : 'text-[#8A8682] dark:text-white/50'}`}>
+          <NavLink key={it.to} to={it.to} className={({isActive}) => `flex-1 flex flex-col items-center gap-1 py-3 text-[11px] tracking-wide font-medium transition-colors ${isActive ? 'text-[#FF4F87] dark:text-[#FF9FBD]' : 'text-[#8A8682] dark:text-white/50'}`}>
             <span className={`w-7 h-7 grid place-items-center rounded-full text-[15px] ${'/*'}`}>{
               it.label==='Home' ? (
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M3 9L12 3L21 9V20H15V14H9V20H3V9Z"/></svg>

@@ -41,13 +41,13 @@ export function InteractiveDemo() {
   }
 
   return (
-    <div className="bg-white dark:bg-[#1E2320] rounded-[28px] p-5 md:p-6 shadow-[0_20px_60px_rgba(0,0,0,0.08)] border border-black/5 dark:border-white/10 overflow-hidden relative">
+    <div className="bg-white dark:bg-[#26213B] rounded-[28px] p-5 md:p-6 shadow-[0_20px_60px_rgba(0,0,0,0.08)] border border-black/5 dark:border-white/10 overflow-hidden relative">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-2">
           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
           <span className="text-xs font-semibold tracking-widest uppercase text-stone-500">Live demo — try it</span>
         </div>
-        <span className="text-xs bg-[#F5EBDD] dark:bg-white/10 px-3 py-1 rounded-full font-medium">No install needed</span>
+        <span className="text-xs bg-[#F0DFDA] dark:bg-white/10 px-3 py-1 rounded-full font-medium">No install needed</span>
       </div>
 
       {phase==='idle' && (
@@ -60,13 +60,13 @@ export function InteractiveDemo() {
               {label:'Learn something', mins:15, icon:'📚'},
               {label:'Wind down', mins:5, icon:'🌙'},
             ].map(o=>(
-              <button key={o.label} onClick={()=> start(o.label)} className="flex items-center gap-3 p-4 rounded-2xl border border-black/[0.06] dark:border-white/10 hover:border-[#5B7A5F]/30 hover:bg-[#FDF8F1] dark:hover:bg-white/[0.04] text-left transition">
-                <span className="w-10 h-10 rounded-xl bg-[#F5EBDD] dark:bg-white/10 grid place-items-center text-lg">{o.icon}</span>
+              <button key={o.label} onClick={()=> start(o.label)} className="flex items-center gap-3 p-4 rounded-2xl border border-black/[0.06] dark:border-white/10 hover:border-[#FF4F87]/30 hover:bg-[#FFF7F3] dark:hover:bg-white/[0.04] text-left transition">
+                <span className="w-10 h-10 rounded-xl bg-[#F0DFDA] dark:bg-white/10 grid place-items-center text-lg">{o.icon}</span>
                 <span className="flex-1">
                   <span className="block text-sm font-semibold">{o.label}</span>
                   <span className="block text-xs text-stone-500">{o.mins} minute session</span>
                 </span>
-                <span className="text-[#5B7A5F]">→</span>
+                <span className="text-[#FF4F87]">→</span>
               </button>
             ))}
           </div>
@@ -80,7 +80,7 @@ export function InteractiveDemo() {
       {(phase==='running' || phase==='nudge') && (
         <div>
           <div className="text-center">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#5B7A5F] text-white text-xs font-semibold tracking-wide">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FF4F87] text-white text-xs font-semibold tracking-wide">
               <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse" /> {purpose}
             </div>
             <div className="mt-4 font-display text-[52px] leading-none tracking-tight tabular-nums">
@@ -90,38 +90,38 @@ export function InteractiveDemo() {
           </div>
 
           <div className="mt-6 h-2 bg-black/5 dark:bg-white/10 rounded-full overflow-hidden">
-            <div className="h-full bg-gradient-to-r from-[#7A9E7E] to-[#5B7A5F] transition-all duration-1000" style={{ width: `${pct}%` }} />
+            <div className="h-full bg-gradient-to-r from-[#25D9D1] to-[#FF4F87] transition-all duration-1000" style={{ width: `${pct}%` }} />
           </div>
 
           <div className="mt-6 grid grid-cols-3 gap-2 text-center">
-            <div className="bg-[#FDF8F1] dark:bg-white/[0.04] rounded-2xl p-3 border border-black/5">
+            <div className="bg-[#FFF7F3] dark:bg-white/[0.04] rounded-2xl p-3 border border-black/5">
               <div className="text-[11px] tracking-widest uppercase text-stone-500">Elapsed</div>
               <div className="font-semibold">{Math.floor((total-seconds)/60)}:{String((total-seconds)%60).padStart(2,'0')}</div>
             </div>
-            <div className="bg-[#FDF8F1] dark:bg-white/[0.04] rounded-2xl p-3 border border-black/5">
+            <div className="bg-[#FFF7F3] dark:bg-white/[0.04] rounded-2xl p-3 border border-black/5">
               <div className="text-[11px] tracking-widest uppercase text-stone-500">Purpose</div>
               <div className="text-xs font-medium leading-tight line-clamp-2">{purpose}</div>
             </div>
-            <div className="bg-[#FDF8F1] dark:bg-white/[0.04] rounded-2xl p-3 border border-black/5">
+            <div className="bg-[#FFF7F3] dark:bg-white/[0.04] rounded-2xl p-3 border border-black/5">
               <div className="text-[11px] tracking-widest uppercase text-stone-500">Mode</div>
-              <div className="text-xs font-semibold text-[#5B7A5F]">Gentle</div>
+              <div className="text-xs font-semibold text-[#FF4F87]">Gentle</div>
             </div>
           </div>
 
           <div className="mt-6 flex gap-2">
             <button onClick={()=> { setPhase('idle'); setSeconds(total)}} className="flex-1 py-3 rounded-full border border-black/10 dark:border-white/10 font-medium text-sm">End</button>
-            <button onClick={()=> setSeconds(s=> Math.min(total, s+30))} className="flex-1 py-3 rounded-full bg-[#F5EBDD] dark:bg-white/10 font-medium text-sm">+30 sec</button>
+            <button onClick={()=> setSeconds(s=> Math.min(total, s+30))} className="flex-1 py-3 rounded-full bg-[#F0DFDA] dark:bg-white/10 font-medium text-sm">+30 sec</button>
           </div>
 
           {phase==='nudge' && (
-            <div className="absolute inset-0 bg-white/80 dark:bg-[#1E2320]/80 backdrop-blur-md grid place-items-center p-6">
-              <div className="bg-white dark:bg-[#252B27] rounded-[24px] p-6 w-full max-w-[320px] shadow-[0_20px_50px_rgba(0,0,0,0.15)] border border-black/5 text-center animate-[in_0.3s_ease]">
-                <div className="w-12 h-12 rounded-full bg-[#F5EBDD] dark:bg-[#5B7A5F]/30 grid place-items-center mx-auto text-xl">🌿</div>
+            <div className="absolute inset-0 bg-white/80 dark:bg-[#26213B]/80 backdrop-blur-md grid place-items-center p-6">
+              <div className="bg-white dark:bg-[#302A4B] rounded-[24px] p-6 w-full max-w-[320px] shadow-[0_20px_50px_rgba(0,0,0,0.15)] border border-black/5 text-center animate-[in_0.3s_ease]">
+                <div className="w-12 h-12 rounded-full bg-[#F0DFDA] dark:bg-[#FF4F87]/30 grid place-items-center mx-auto text-xl">🌿</div>
                 <h4 className="font-display text-xl mt-3">Still want to keep scrolling?</h4>
                 <p className="text-sm text-stone-500 mt-1">You've paused before — decide intentionally.</p>
                 <div className="grid gap-2 mt-5">
-                  <button onClick={()=> { setPhase('done'); setSeconds(0)}} className="w-full py-3 rounded-full bg-[#1A1E1D] dark:bg-white text-white dark:text-[#1A1E1D] font-semibold">I'm done ✓</button>
-                  <button onClick={()=> { setPhase('running'); setSeconds(s=> s+30)}} className="w-full py-3 rounded-full bg-[#E8F0E8] dark:bg-white/10 font-semibold">+5 minutes</button>
+                  <button onClick={()=> { setPhase('done'); setSeconds(0)}} className="w-full py-3 rounded-full bg-[#17152B] dark:bg-white text-white dark:text-[#17152B] font-semibold">I'm done ✓</button>
+                  <button onClick={()=> { setPhase('running'); setSeconds(s=> s+30)}} className="w-full py-3 rounded-full bg-[#DFF8F5] dark:bg-white/10 font-semibold">+5 minutes</button>
                   <button onClick={()=> setPhase('running')} className="w-full py-3 rounded-full border border-black/10 dark:border-white/10 font-medium text-sm">Continue</button>
                 </div>
               </div>
@@ -132,17 +132,17 @@ export function InteractiveDemo() {
 
       {phase==='done' && (
         <div className="text-center py-2">
-          <div className="w-16 h-16 rounded-full bg-[#E8F0E8] dark:bg-[#5B7A5F]/20 grid place-items-center mx-auto">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#5B7A5F" strokeWidth="2"><path d="M5 13L9 17L19 7"/></svg>
+          <div className="w-16 h-16 rounded-full bg-[#DFF8F5] dark:bg-[#FF4F87]/20 grid place-items-center mx-auto">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FF4F87" strokeWidth="2"><path d="M5 13L9 17L19 7"/></svg>
           </div>
           <h3 className="font-display text-2xl mt-4">Session complete.</h3>
           <p className="text-sm text-stone-500 mt-1">You stayed intentional for {purpose.toLowerCase()}. Nice pause.</p>
-          <div className="mt-4 bg-[#FDF8F1] dark:bg-white/[0.04] rounded-2xl p-4 flex justify-around border border-black/5">
+          <div className="mt-4 bg-[#FFF7F3] dark:bg-white/[0.04] rounded-2xl p-4 flex justify-around border border-black/5">
             <div><div className="text-xs uppercase tracking-widest text-stone-500">Time</div><div className="font-semibold">1:00</div></div>
             <div className="w-px bg-black/5" />
             <div><div className="text-xs uppercase tracking-widest text-stone-500">Purpose</div><div className="font-medium text-sm">{purpose}</div></div>
           </div>
-          <button onClick={()=> setPhase('idle')} className="mt-6 w-full py-3 rounded-full bg-[#5B7A5F] text-white font-semibold">Start another</button>
+          <button onClick={()=> setPhase('idle')} className="mt-6 w-full py-3 rounded-full bg-[#FF4F87] text-white font-semibold">Start another</button>
           <button onClick={()=> setPhase('idle')} className="mt-2 text-sm text-stone-500 underline decoration-dotted">Back to options</button>
         </div>
       )}
