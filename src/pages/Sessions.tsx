@@ -12,6 +12,14 @@ export default function Sessions() {
   const [cat, setCat] = useState('Social media')
   const [mins, setMins] = useState(15)
 
+  const formatRemaining = (seconds: number) => {
+    const hours = Math.floor(seconds / 3600)
+    const minutes = Math.floor((seconds % 3600) / 60)
+    const remainingSeconds = seconds % 60
+    if (hours > 0) return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`
+    return `${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`
+  }
+
   return (
     <div className="px-4 pt-4 space-y-4">
       <div className="flex items-center justify-between">
@@ -29,7 +37,7 @@ export default function Sessions() {
         <div className="bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800 rounded-2xl p-4 flex items-center gap-3">
           <div className="w-10 h-10 rounded-xl bg-emerald-500 text-white grid place-items-center">⏳</div>
           <div className="flex-1">
-            <div className="text-sm font-semibold">Live: {active.label} • {Math.floor(active.remaining/60)}:{String(active.remaining%60).padStart(2,'0')} left</div>
+            <div className="text-sm font-semibold">Live: {active.label} • {formatRemaining(active.remaining)} left</div>
             <div className="text-xs text-stone-600 dark:text-white/60">{active.category} • {active.durationMinutes} min</div>
           </div>
           <button onClick={()=> endSession('completed')} className="text-xs font-bold px-3 py-1.5 rounded-full bg-[#17152B] text-white dark:bg-white dark:text-black">End</button>
@@ -83,10 +91,15 @@ export default function Sessions() {
             </div>
             <label className="block text-sm font-medium mt-4">Minutes</label>
             <div className="grid grid-cols-4 gap-2 mt-1">
-              {[5,10,15,20,30,45].map(m=>(
+              {[5,10,15,20,30,45,60,90,120,180,240].map(m=>(
                 <button key={m} onClick={()=> setMins(m)} className={`py-2.5 rounded-2xl border font-semibold ${mins===m?'bg-[#17152B] text-white dark:bg-white dark:text-black':'bg-white dark:bg-white/5 border-black/10'}`}>{m}</button>
               ))}
             </div>
+            <label className="block text-xs font-medium text-stone-500 mt-3">
+              Custom duration in minutes
+              <input type="number" min={1} max={1440} step={1} value={mins} onChange={e=> setMins(Math.min(1440, Math.max(1, Number(e.target.value) || 1)))} className="mt-1 w-full px-3 py-2.5 rounded-xl border border-black/10 dark:border-white/10 bg-[#FFF7F3] dark:bg-white/5 text-sm font-semibold text-[#17152B] dark:text-white" />
+            </label>
+            <p className="text-xs text-stone-500 mt-2">Up to 24 hours per session.</p>
             <button onClick={()=> { startSession(purpose||'Intentional scroll', cat, mins); setShowNew(false); setPurpose('') }} className="mt-6 w-full py-3.5 rounded-full bg-[#FF4F87] text-white font-semibold">Start {mins} min</button>
             <button onClick={()=> setShowNew(false)} className="mt-2 w-full py-3 rounded-full border border-black/10 dark:border-white/10">Cancel</button>
           </div>

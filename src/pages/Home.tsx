@@ -8,6 +8,14 @@ export default function Home() {
   const [category, setCategory] = useState('Social media')
   const [minutes, setMinutes] = useState(15)
 
+  const formatRemaining = (seconds: number) => {
+    const hours = Math.floor(seconds / 3600)
+    const mins = Math.floor((seconds % 3600) / 60)
+    const secs = seconds % 60
+    if (hours > 0) return `${String(hours).padStart(2, '0')}:${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`
+    return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`
+  }
+
   const goal = settings.dailyGoal
   const pct = Math.min(100, Math.round((todayMinutes/goal)*100))
   const remainingLabel = todayRemaining>0 ? `${todayRemaining} min remaining` : 'Goal reached — nice pause'
@@ -70,7 +78,7 @@ export default function Home() {
               <span className={`w-2 h-2 rounded-full ${active.pausedAt ? 'bg-amber-400' : 'bg-emerald-400 animate-pulse'}`} />
             </div>
             <div className="mt-3 flex items-baseline gap-3">
-              <span className="font-display text-[40px] leading-none tabular-nums">{String(Math.floor(active.remaining/60)).padStart(2,'0')}:{String(active.remaining%60).padStart(2,'0')}</span>
+              <span className="font-display text-[40px] leading-none tabular-nums">{formatRemaining(active.remaining)}</span>
               <span className="text-xs bg-white/15 dark:bg-black/10 px-2.5 py-1 rounded-full font-medium">{active.category} • {active.durationMinutes}m</span>
             </div>
             <div className="text-sm opacity-70 mt-1 line-clamp-1">“{active.label}”</div>
@@ -182,14 +190,18 @@ export default function Home() {
 
             <label className="block mt-4 text-sm font-medium">Duration</label>
             <div className="mt-2 grid grid-cols-4 gap-2">
-              {[5,10,15,20,25,30,45,60].map(m=>(
+              {[5,10,15,20,25,30,45,60,90,120,180,240].map(m=>(
                 <button key={m} onClick={()=> setMinutes(m)} className={`py-3 rounded-2xl border font-semibold ${minutes===m ? 'bg-[#17152B] text-white dark:bg-white dark:text-black border-transparent' : 'bg-white dark:bg-white/5 border-black/10 dark:border-white/10'}`}>{m}m</button>
               ))}
             </div>
             <div className="mt-3 flex items-center gap-3">
-              <input type="range" min={2} max={60} value={minutes} onChange={e=> setMinutes(Number(e.target.value))} className="flex-1 accent-[#FF4F87]" />
-              <span className="text-sm font-semibold w-14 text-right">{minutes} min</span>
+              <label className="flex-1 text-xs font-medium text-stone-500">
+                Custom duration
+                <input type="number" min={1} max={1440} step={1} value={minutes} onChange={e=> setMinutes(Math.min(1440, Math.max(1, Number(e.target.value) || 1)))} className="mt-1 w-full px-3 py-2.5 rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-white/5 text-sm font-semibold text-[#17152B] dark:text-white" />
+              </label>
+              <span className="text-sm font-semibold w-14 text-right">min</span>
             </div>
+            <p className="text-xs text-stone-500 mt-2">Choose any duration from 1 minute to 24 hours.</p>
 
             <button onClick={handleStart} className="mt-6 w-full py-3.5 rounded-full bg-[#FF4F87] text-white font-semibold text-[16px]">Start {minutes}-minute session</button>
             <button onClick={()=> setShowStart(false)} className="mt-2 w-full py-3 rounded-full border border-black/10 dark:border-white/10 font-medium">Cancel</button>
